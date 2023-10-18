@@ -9,6 +9,11 @@
     "start": "react-native start",
     "test": "jest"
   },
+  "rnpm": {
+    "assets": [
+      "./Source/Fonts/"
+    ]
+  },
   "dependencies": {
     "@react-navigation/native": "^6.1.8",
     "@react-navigation/native-stack": "^6.9.14",
