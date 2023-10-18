@@ -70,7 +70,10 @@ const Screen1 = ({ navigation }) => {
                             <Image source={downArrow} />
                             <Text style={Styles.buttonText}>Under</Text>
                         </TouchableOpacity>
-                        <TouchableOpacity activeOpacity={0.5} style={[Styles.buttonContainer, { backgroundColor: '#6231AD' }]}>
+                        <TouchableOpacity
+                            onPress={() => navigation.navigate('Screen3')}
+                            activeOpacity={0.5}
+                            style={[Styles.buttonContainer, { backgroundColor: '#6231AD' }]}>
                             <Image source={upArrow} />
                             <Text style={Styles.buttonText}>Over</Text>
                         </TouchableOpacity>
@@ -113,7 +116,6 @@ const Styles = StyleSheet.create({
     mainContainer: {
         flex: 1,
         backgroundColor: '#fff',
-        alignItems: 'center'
     },
     heading: {
         fontFamily: Fonts.montserrat_Bold,
@@ -121,6 +123,7 @@ const Styles = StyleSheet.create({
         fontSize: 16,
         lineHeight: 21,
         margin: 13,
+        color: '#333'
     },
     cardContainer: {
         height: 389,
@@ -128,6 +131,7 @@ const Styles = StyleSheet.create({
         borderRadius: 5,
         borderWidth: 1,
         borderColor: '#EEEAF3',
+        alignSelf: 'center'
     },
     section1: {
         height: 104,
@@ -179,9 +183,9 @@ const Styles = StyleSheet.create({
     },
     priceAmt: {
         color: '#FFF',
-        fontFamily: Fonts.montserrat_Regular,
+        fontFamily: Fonts.montserrat_Bold,
         fontSize: 14,
-        fontWeight: '700',
+        fontWeight: '600',
         lineHeight: 19
     },
     bitCoinImg: {
@@ -198,6 +202,7 @@ const Styles = StyleSheet.create({
         height: 175,
         backgroundColor: '#EEEAF3',
         justifyContent: 'center',
+        elevation: 1
     },
     section2Row: {
         flexDirection: 'row',
@@ -205,7 +210,7 @@ const Styles = StyleSheet.create({
         margin: 15
     },
     rowLabel: {
-        color: '#B5C0C8',
+        color: 'grey',
         fontFamily: Fonts.montserrat_Regular,
         fontSize: 12,
         fontWeight: '600',
@@ -266,7 +271,8 @@ const Styles = StyleSheet.create({
         backgroundColor: '#F6F3FA',
         borderBottomRightRadius: 4,
         borderBottomLeftRadius: 4,
-        justifyContent: 'center'
+        justifyContent: 'center',
+        elevation: 1
     },
     section3Row: {
         flexDirection: 'row',
@@ -311,7 +317,7 @@ const Styles = StyleSheet.create({
         justifyContent: 'space-between',
     },
     predictText: {
-        color: "#B5C0C8",
+        color: "grey",
         fontSize: 12,
         fontWeight: '500',
         fontFamily: Fonts.montserrat_Regular,
