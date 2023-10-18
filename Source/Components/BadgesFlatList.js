@@ -47,19 +47,19 @@ const BadgesFlatList = () => {
                     <View style={{ height: 2, width: '100%', backgroundColor: badgePress ? '#6231AD' : '#F3F2F7', position: 'absolute', top: '100%' }} />
                 </TouchableOpacity>
             </View>
+
             {badgePress ?
                 <FlatList
                     style={{ marginBottom: 50 }}
                     data={BadgesMockData}
                     renderItem={RenderItem}
+                    showsVerticalScrollIndicator={false}
                 />
                 :
                 <View style={Styles.noGamesContainer}>
                     <Text style={Styles.noGamesText}>No games found!</Text>
                 </View>
             }
-            {/* {gamesPress ?
-                : null} */}
 
         </View>
     )

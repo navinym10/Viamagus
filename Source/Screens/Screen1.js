@@ -1,5 +1,7 @@
 import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native'
-import React from 'react'
+import React, { useState } from 'react'
+import Modal from 'react-native-modal'
+// import { Picker } from '@react-native-picker/picker';
 
 // fonts
 import { Fonts } from '../Fonts/Fonts'
@@ -8,6 +10,19 @@ import { Fonts } from '../Fonts/Fonts'
 import { bitCoin, clock, downArrow, info, profile, progress, upArrow } from '../Images/Images'
 
 const Screen1 = ({ navigation }) => {
+
+    const [modalVisible, setModalVisible] = useState(false)
+
+    const [selectedNumber, setSelectedNumber] = useState(1);
+
+    const handleNumberChange = (itemValue, itemIndex) => {
+        setSelectedNumber(itemValue);
+    };
+
+    const toggleModal = () => {
+        setModalVisible(!modalVisible)
+    }
+
     return (
         <View style={Styles.mainContainer}>
             <Text style={Styles.heading}>Today's Games</Text>
@@ -66,12 +81,14 @@ const Screen1 = ({ navigation }) => {
                     <Text style={Styles.predictionText}>What's your prediction?</Text>
                     {/* buttons */}
                     <View style={Styles.buttonsRow}>
-                        <TouchableOpacity activeOpacity={0.5} style={[Styles.buttonContainer]}>
+                        <TouchableOpacity
+                            onPress={toggleModal}
+                            activeOpacity={0.5} style={[Styles.buttonContainer]}>
                             <Image source={downArrow} />
                             <Text style={Styles.buttonText}>Under</Text>
                         </TouchableOpacity>
                         <TouchableOpacity
-                            onPress={() => navigation.navigate('Screen3')}
+                            onPress={toggleModal}
                             activeOpacity={0.5}
                             style={[Styles.buttonContainer, { backgroundColor: '#6231AD' }]}>
                             <Image source={upArrow} />
@@ -106,6 +123,51 @@ const Screen1 = ({ navigation }) => {
                 </View>
 
             </View>
+
+            {/* modal */}
+            <Modal
+                isVisible={modalVisible}
+                onBackdropPress={toggleModal}
+                onBackButtonPress={toggleModal}
+                style={Styles.modal}>
+                <View style={Styles.modalContainer}>
+                    <TouchableOpacity onPress={toggleModal} style={Styles.modalLine} />
+                    <Text style={Styles.selectPrediction}>Your Prediction is Under</Text>
+                    <Text style={Styles.entryTicketsText}>Entry Tickets</Text>
+                    {/* <Picker
+                        selectedValue={selectedNumber}
+                        onValueChange={handleNumberChange}
+                        style={{
+                            width: 200,
+                            height: 50,
+                            marginBottom: 20,
+                        }}
+                    >
+                        {[...Array(20).keys()].map((number) => (
+                            <Picker.Item key={number + 1} label={(number + 1).toString()} value={number + 1} />
+                        ))}
+                    </Picker> */}
+                    <Text style={Styles.winText}>You can win</Text>
+                    <View style={Styles.amtContainer}>
+                        <Text style={Styles.amtText}>$2000</Text>
+                        <View style={Styles.totalContainer}>
+                            <Text style={Styles.totalText}>Total</Text>
+                            <View style={Styles.coinColor} />
+                            <Text style={Styles.coinValue}>5</Text>
+                        </View>
+                    </View>
+                    {/* submit button */}
+                    <TouchableOpacity
+                        onPress={() => {
+                            navigation.navigate('Screen3')
+                            setModalVisible(false)
+                        }}
+                        activeOpacity={0.5} style={Styles.submitButton}>
+                        <Text style={Styles.buttonText}>Submit my prediction</Text>
+                    </TouchableOpacity>
+                </View>
+            </Modal>
+
         </View>
     )
 }
@@ -322,4 +384,99 @@ const Styles = StyleSheet.create({
         fontWeight: '500',
         fontFamily: Fonts.montserrat_Regular,
     },
+    modal: {
+        justifyContent: 'flex-end',
+        width: '100%',
+        margin: 0,
+        borderTopLeftRadius: 50,
+    },
+    modalContainer: {
+        backgroundColor: 'white',
+        borderTopLeftRadius: 20,
+        borderTopRightRadius: 20,
+        borderWidth: 1,
+        borderColor: '#ECF3F3'
+    },
+    modalLine: {
+        width: 30,
+        height: 4,
+        borderRadius: 36,
+        backgroundColor: '#B5C0C8',
+        margin: 20,
+        alignSelf: 'center'
+    },
+    selectPrediction: {
+        color: '#333',
+        fontFamily: Fonts.montserrat_Bold,
+        fontSize: 16,
+        fontWeight: '600',
+        marginLeft: 16,
+    },
+    entryTicketsText: {
+        color: 'grey',
+        fontFamily: Fonts.montserrat_Regular,
+        fontSize: 12,
+        fontWeight: '600',
+        textTransform: 'uppercase',
+        marginStart: 16,
+        marginTop: 28
+    },
+    winText: {
+        color: 'grey',
+        fontFamily: Fonts.montserrat_Regular,
+        fontSize: 12,
+        fontWeight: '500',
+        marginStart: 16,
+        marginTop: 100
+    },
+    amtContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        marginTop: 5,
+        marginStart: 16,
+        marginEnd: 16
+    },
+    amtText: {
+        color: '#03A67F',
+        fontFamily: Fonts.montserrat_Regular,
+        fontSize: 14,
+        fontWeight: '600',
+    },
+    totalContainer: {
+        flexDirection: 'row',
+        alignContent: 'center',
+    },
+    totalText: {
+        color: '#727682',
+        fontFamily: Fonts.montserrat_Regular,
+        fontSize: 12,
+        fontWeight: '500',
+    },
+    coinColor: {
+        height: 13,
+        width: 13,
+        backgroundColor: '#FFD600',
+        borderRadius: 50,
+        marginStart: 8
+    },
+    coinValue: {
+        color: '#333',
+        fontFamily: Fonts.montserrat_Bold,
+        fontSize: 14,
+        fontWeight: '500',
+        marginStart: 8,
+        top: -2
+    },
+    submitButton: {
+        width: '90%',
+        height: 50,
+        borderRadius: 33,
+        backgroundColor: '#6231AD',
+        alignItems: 'center',
+        justifyContent: "center",
+        alignSelf: 'center',
+        marginTop: 30,
+        marginBottom: 40
+    }
 })

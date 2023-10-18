@@ -44,7 +44,7 @@ const Screen3 = ({ navigation }) => {
                 <Text style={Styles.logoutText}>Logout</Text>
             </TouchableOpacity>
 
-            <ScrollView style={{ marginTop: 20 }}>
+            <ScrollView showsVerticalScrollIndicator={false} style={{ marginTop: 20 }}>
 
                 {/* percentage */}
                 <View style={Styles.predicationContainer}>
