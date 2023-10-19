@@ -149,6 +149,7 @@ const Screen1 = ({ navigation }) => {
                             style={Styles.ticktInp}
                             value={inputValue}
                             onChangeText={handleInputChange}
+                            placeholderTextColor={'black'}
                             placeholder='Enter tickets' />
                     </View>
 
