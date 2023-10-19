@@ -1,7 +1,6 @@
-import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native'
+import { View, Text, StyleSheet, TouchableOpacity, Image, TextInput } from 'react-native'
 import React, { useState } from 'react'
 import Modal from 'react-native-modal'
-// import { Picker } from '@react-native-picker/picker';
 
 // fonts
 import { Fonts } from '../Fonts/Fonts'
@@ -12,11 +11,12 @@ import { bitCoin, clock, downArrow, info, profile, progress, upArrow } from '../
 const Screen1 = ({ navigation }) => {
 
     const [modalVisible, setModalVisible] = useState(false)
+    const [inputValue, setInputValue] = useState('');
 
-    const [selectedNumber, setSelectedNumber] = useState(1);
-
-    const handleNumberChange = (itemValue, itemIndex) => {
-        setSelectedNumber(itemValue);
+    const handleInputChange = (text) => {
+        const numericValue = text.replace(/[^0-9]/g, '');
+        const changedValue = Math.min(Math.max(parseInt(numericValue), 1), 100);
+        setInputValue(changedValue.toString());
     };
 
     const toggleModal = () => {
@@ -134,19 +134,16 @@ const Screen1 = ({ navigation }) => {
                     <TouchableOpacity onPress={toggleModal} style={Styles.modalLine} />
                     <Text style={Styles.selectPrediction}>Your Prediction is Under</Text>
                     <Text style={Styles.entryTicketsText}>Entry Tickets</Text>
-                    {/* <Picker
-                        selectedValue={selectedNumber}
-                        onValueChange={handleNumberChange}
-                        style={{
-                            width: 200,
-                            height: 50,
-                            marginBottom: 20,
-                        }}
-                    >
-                        {[...Array(20).keys()].map((number) => (
-                            <Picker.Item key={number + 1} label={(number + 1).toString()} value={number + 1} />
-                        ))}
-                    </Picker> */}
+
+                    <View style={Styles.ticketView}>
+                        <TextInput
+                            keyboardType='number-pad'
+                            style={Styles.ticktInp}
+                            value={inputValue}
+                            onChangeText={handleInputChange}
+                            placeholder='Enter tickets' />
+                    </View>
+
                     <Text style={Styles.winText}>You can win</Text>
                     <View style={Styles.amtContainer}>
                         <Text style={Styles.amtText}>$2000</Text>
@@ -427,7 +424,25 @@ const Styles = StyleSheet.create({
         fontSize: 12,
         fontWeight: '500',
         marginStart: 16,
-        marginTop: 100
+        marginTop: 50,
+    },
+    ticketView: {
+        height: 40,
+        backgroundColor: '#f3effa',
+        width: '90%',
+        alignSelf: 'center',
+        marginTop: 50,
+        alignItems: 'center',
+        justifyContent: "center",
+        fontWeight: '900'
+    },
+    ticktInp: {
+        fontFamily: Fonts.montserrat_Regular,
+        fontWeight: '500',
+        fontSize: 16,
+        color: 'black',
+        width: 150,
+        textAlign: 'center'
     },
     amtContainer: {
         flexDirection: 'row',
