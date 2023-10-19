@@ -1,5 +1,7 @@
 import { View, Text, StyleSheet, TouchableOpacity, Image, TextInput } from 'react-native'
 import React, { useState } from 'react'
+
+// modal
 import Modal from 'react-native-modal'
 
 // fonts
@@ -10,6 +12,7 @@ import { bitCoin, clock, downArrow, info, profile, progress, upArrow } from '../
 
 const Screen1 = ({ navigation }) => {
 
+    // states
     const [modalVisible, setModalVisible] = useState(false)
     const [inputValue, setInputValue] = useState('');
 
@@ -45,6 +48,7 @@ const Screen1 = ({ navigation }) => {
                             <Text style={Styles.timeText}>03:23:12</Text>
                         </View>
                     </View>
+
                     {/* description */}
                     <View style={Styles.section1Desc}>
                         <View style={{ width: '75%' }}>
@@ -79,6 +83,7 @@ const Screen1 = ({ navigation }) => {
                         </View>
                     </View>
                     <Text style={Styles.predictionText}>What's your prediction?</Text>
+
                     {/* buttons */}
                     <View style={Styles.buttonsRow}>
                         <TouchableOpacity
@@ -110,11 +115,13 @@ const Screen1 = ({ navigation }) => {
                             <Text style={Styles.section3Label}>View chart</Text>
                         </View>
                     </View>
+
                     {/* bar */}
                     <View style={Styles.barRow}>
                         <View style={Styles.firstBar} />
                         <View style={Styles.secondBar} />
                     </View>
+
                     {/* predications */}
                     <View style={Styles.predictionRow}>
                         <Text style={Styles.predictText}>232 predicted under</Text>
@@ -135,6 +142,7 @@ const Screen1 = ({ navigation }) => {
                     <Text style={Styles.selectPrediction}>Your Prediction is Under</Text>
                     <Text style={Styles.entryTicketsText}>Entry Tickets</Text>
 
+                    {/* input field */}
                     <View style={Styles.ticketView}>
                         <TextInput
                             keyboardType='number-pad'
@@ -144,6 +152,7 @@ const Screen1 = ({ navigation }) => {
                             placeholder='Enter tickets' />
                     </View>
 
+                    {/* amt section */}
                     <Text style={Styles.winText}>You can win</Text>
                     <View style={Styles.amtContainer}>
                         <Text style={Styles.amtText}>$2000</Text>
@@ -153,6 +162,7 @@ const Screen1 = ({ navigation }) => {
                             <Text style={Styles.coinValue}>5</Text>
                         </View>
                     </View>
+
                     {/* submit button */}
                     <TouchableOpacity
                         onPress={() => {

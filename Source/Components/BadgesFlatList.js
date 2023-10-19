@@ -6,6 +6,8 @@ import { Fonts } from '../Fonts/Fonts'
 
 // mock data
 import { BadgesMockData } from '../MockData/BadgesMockData'
+
+// images
 import { badgeImg } from '../Images/Images'
 
 const BadgesFlatList = () => {
@@ -37,6 +39,8 @@ const BadgesFlatList = () => {
 
     return (
         <View style={Styles.flatListContainer}>
+
+            {/* tabs switch */}
             <View style={Styles.batchContainer}>
                 <TouchableOpacity onPress={handleGamesPress} style={Styles.batchButton} activeOpacity={0.5}>
                     <Text style={[Styles.batchText, { color: gamesPress ? '#6231AD' : '#727682' }]}>Games played</Text>

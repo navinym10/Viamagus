@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native'
+import { View, Text, TouchableOpacity, StyleSheet, Image, ScrollView } from 'react-native'
 import React from 'react'
 
 // images
@@ -9,7 +9,6 @@ import { Fonts } from '../Fonts/Fonts'
 
 // components
 import BadgesFlatList from '../Components/BadgesFlatList'
-import { ScrollView } from 'react-native'
 
 const Screen3 = ({ navigation }) => {
     return (
